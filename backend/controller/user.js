@@ -78,6 +78,16 @@ export const removeUser = async (req, res) => {
 export const getUserByObject = async (req, res) => {
   try {
     const { email, password } = req.body;
+    const user = await User.findOne({
+      email,
+    });
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      return res.status(400).send({
+        success: false,
+        error: "Invalid password",
+      });
+    }
     const token = jwt.sign(
       {
         name: req.body.name,
@@ -86,22 +96,24 @@ export const getUserByObject = async (req, res) => {
       },
       "secret"
     );
-    const user = await User.findOne({
-      email,
+    res.status(200).send({
+      success: true,
+      data: user,
+      token,
     });
-    if (user) {
-      if (user.password !== password) {
-        throw new Error("Email or password wrong");
-      }
-      res.status(200).send({
-        data: user,
-        token: token,
-      });
-    } else {
-      res.status(404).send({
-        data: "tiim user bhq bn",
-      });
-    }
+    // if (user) {
+    //   if (user.password !== password) {
+    //     throw new Error("Email or password wrong");
+    //   }
+    //   res.status(200).send({
+    //     data: user,
+    //     token: token,
+    //   });
+    // } else {
+    //   res.status(404).send({
+    //     data: "tiim user bhq bn",
+    //   });
+    // }
   } catch (error) {
     res.status(400).send({
       success: false,

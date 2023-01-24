@@ -6,7 +6,6 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import win from "global";
 function Loginn() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -19,8 +18,6 @@ function Loginn() {
 
       window.location.replace(`/users/${res.data.data._id}`);
       window.localStorage.setItem("token", JSON.stringify(res.data.token));
-      window.Cookie.setItem("token", JSON.stringify(res.data.token));
-
       toast.success("amjilttai");
     } catch (error) {
       toast.error(error.response.data.error);

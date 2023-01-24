@@ -65,15 +65,15 @@ function Home({ data, setData }) {
       </div>
       <div className="historyContainer">
         <div className="history">
-          {id && (
+          {/* {id && (
             <div>
               <History data={id} setData={setId} />;
             </div>
-          )}
-          {data &&
+          )} */}
+          {/* {data &&
             data.map((data) => {
               return <History data={data} setData={setData} />;
-            })}
+            })} */}
         </div>
       </div>
       <div className="footer">

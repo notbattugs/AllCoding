@@ -23,7 +23,7 @@ function App() {
   };
   useEffect(() => {
     getData();
-  });
+  }, []);
   return (
     <>
       <BrowserRouter>

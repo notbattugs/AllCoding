@@ -34,7 +34,7 @@ function Home({ data, setData }) {
           </p>
 
           <Link to={"/login"}>
-            <p
+            <div
               className="pee"
               style={{
                 width: "200px",
@@ -43,8 +43,21 @@ function Home({ data, setData }) {
                 marginTop: 20,
               }}
             >
-              {email}⬇️
-            </p>
+              {email}✅
+            </div>
+          </Link>
+          <Link to={"/"}>
+            <button
+              className="button"
+              style={{
+                width: "200px",
+                height: "40px",
+                marginRight: 150,
+                marginTop: 20,
+              }}
+            >
+              Log out
+            </button>
           </Link>
         </div>
         <div
