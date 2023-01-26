@@ -1,22 +1,3 @@
-// import mongoose from "mongoose";
-// import bcrypt from "bcrypt";
-// import jwt from "jsonwebtoken";
-
-// const UserSchema = new mongoose.Schema({
-//   email: {
-//     type: String,
-//     required: [true],
-//   },
-//   password: {
-//     type: String,
-//     required: [true],
-//   },
-//   name: {
-//     type: String,
-//     required: [false],
-//   },
-// });
-
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -38,8 +19,8 @@ const UserSchema = new mongoose.Schema(
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
-UserSchema.virtual("urls", {
-  ref: "Url",
+UserSchema.virtual("Link", {
+  ref: "Link",
   localField: "_id",
   foreignField: "user_id",
 });

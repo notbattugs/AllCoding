@@ -6,7 +6,7 @@ const ViewUrlComponent = () => {
 
   useEffect(() => {
     const fetchUrlAndSetUrl = async () => {
-      const result = await axios.get("http://localhost:3333/All");
+      const result = await axios.get("http://localhost:8000/All");
       setUrls(result.data);
     };
     fetchUrlAndSetUrl();

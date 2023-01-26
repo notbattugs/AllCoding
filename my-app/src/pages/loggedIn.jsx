@@ -18,6 +18,8 @@ function Home({ data, setData }) {
   const createPost = async () => {
     const res = await axios.post("http://localhost:8000/links", {
       Longlink: url,
+      user_id: params.id,
+      token: JSON.parse(localStorage.getItem("token")),
     });
     setId(res.data.data);
   };
@@ -56,7 +58,7 @@ function Home({ data, setData }) {
                 marginTop: 20,
               }}
             >
-              Log out
+              Гарах
             </button>
           </Link>
         </div>
@@ -91,7 +93,7 @@ function Home({ data, setData }) {
         <div className="history">
           {id && (
             <div>
-              <History data={id} setData={setId} />;
+              <History data={id} setData={setId} />
             </div>
           )}
           {data &&
