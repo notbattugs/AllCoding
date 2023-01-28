@@ -12,11 +12,9 @@ export const checkTokenMiddleWare = (req, res, next) => {
 
 export const Role = (req, res, next) => {
   const role = req.body.role;
-  if (role == "Admin") {
-    console.log(true);
-    next();
+  if (role !== "Admin") {
+    res.send("admin bish");
   } else {
-    console.log(false);
-    res.send("error");
+    next();
   }
 };

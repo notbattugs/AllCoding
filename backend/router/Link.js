@@ -3,14 +3,14 @@ import {
   getAlllinks,
   createlink,
   deletelink,
-  findlink
+  findlink,
 } from "../controller/link.js";
-
+import { Role } from "../middleware/middleware.js";
 
 const router = express.Router();
 
 router.route("/").get(getAlllinks).post(createlink);
-router.route("/:id").delete(deletelink);
-router.route("/:params").get(findlink)
+router.delete("/:id", Role, deletelink);
+router.route("/:params").get(findlink);
 
 export default router;
