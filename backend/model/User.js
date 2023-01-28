@@ -15,6 +15,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: [false],
     },
+    role: {
+      type: String,
+      required: [true, "asd"],
+      default: "normal",
+      enum: ["normal", "Admin", "SuperAdmin"],
+    },
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

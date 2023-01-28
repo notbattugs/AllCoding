@@ -33,7 +33,7 @@ export const createUser = async (req, res) => {
 
 export const getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id).populate("Link");
     res.status(200).send({
       success: true,
       data: user,

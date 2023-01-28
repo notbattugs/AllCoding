@@ -2,18 +2,23 @@ import React from "react";
 import "../App.css";
 import Logo from "../assets/boginooLogo.png";
 import { Link, useParams } from "react-router-dom";
-import History from "../components/history";
+import Show from "../components/Show";
+import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import History from "../components/history";
 import { useState, useEffect } from "react";
 function Home({ data, setData }) {
   const params = useParams();
   const [url, setUrl] = useState("");
+  const [history, setHistory] = useState();
   const [id, setId] = useState("");
   const [email, setEmail] = useState();
   const getUser = async () => {
     const res = await axios.get(`http://localhost:8000/users/${params.id}`);
-    console.log(res);
     setEmail(res.data.data.email);
+    setHistory(res.data.data.Link);
+    console.log(history);
   };
   const createPost = async () => {
     const res = await axios.post("http://localhost:8000/links", {
@@ -43,9 +48,10 @@ function Home({ data, setData }) {
                 height: "40px",
                 marginRight: "150px",
                 marginTop: 20,
+                fontWeight: 900,
               }}
             >
-              {email}✅
+              {email}👤
             </div>
           </Link>
           <Link to={"/"}>
@@ -96,9 +102,9 @@ function Home({ data, setData }) {
               <History data={id} setData={setId} />
             </div>
           )}
-          {data &&
-            data.map((data) => {
-              return <History data={data} setData={setData} />;
+          {history &&
+            history.map((data) => {
+              return <History data={data} />;
             })}
         </div>
       </div>

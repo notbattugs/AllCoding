@@ -7,12 +7,12 @@ import {
   removeUser,
   getUserByObject,
 } from "../controller/user.js";
-import { checkTokenMiddleWare } from "../middleware/middleware.js";
+import { checkTokenMiddleWare, Role } from "../middleware/middleware.js";
 const router = express.Router();
 
 router.route("/").get(getAllUsers);
 router.route("/:id").get(getUser).put(updateUser).delete(removeUser);
-router.route("/login").post(getUserByObject);
+router.route("/login").all(Role).post(getUserByObject);
 router.route("/signup").post(createUser);
 
 export default router;
