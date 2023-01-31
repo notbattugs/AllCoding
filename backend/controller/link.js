@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 
 export const getAlllinks = async (req, res) => {
   try {
-    const link = await Link.find({});
+    const link = await Link.find({}.limit(2));
     res.status(200).send({
       data: link,
     });
