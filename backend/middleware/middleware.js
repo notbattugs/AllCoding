@@ -11,7 +11,7 @@ export const checkTokenMiddleWare = (req, res, next) => {
 };
 
 export const Role = (req, res, next) => {
-  const role = req.body.role;
+  const { role } = req.body;
   if (role !== "Admin") {
     res.send("admin bish");
   } else {

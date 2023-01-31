@@ -5,28 +5,45 @@ import { Link, useParams } from "react-router-dom";
 import Show from "../components/Show";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
+import { instance } from "../App";
 import History from "../components/history";
 import { useState, useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
 function Home({ data, setData }) {
   const params = useParams();
   const [url, setUrl] = useState("");
   const [history, setHistory] = useState();
+  const [role, setRole] = useState();
+  const [postid, setPostid] = useState();
   const [id, setId] = useState("");
   const [email, setEmail] = useState();
   const getUser = async () => {
-    const res = await axios.get(`http://localhost:8000/users/${params.id}`);
+    const res = await instance.get(`/users/${params.id}`);
     setEmail(res.data.data.email);
-    setHistory(res.data.data.Link);
-    console.log(history);
+    setHistory(
+      res.data.data.Link.map((el) => {
+        setPostid(el._id);
+        return el.Longlink;
+      })
+    );
+    setRole(res.data.data.role);
   };
   const createPost = async () => {
-    const res = await axios.post("http://localhost:8000/links", {
+    const res = await instance.post("/links", {
       Longlink: url,
       user_id: params.id,
       token: JSON.parse(localStorage.getItem("token")),
     });
     setId(res.data.data);
+  };
+  const deleteHistory = async () => {
+    if (role === "Admin") {
+      console.log(role);
+      const res = await instance.delete(`/links/${postid}`);
+      console.log(res);
+    } else {
+      toast.error("Admin bish");
+    }
   };
   useEffect(() => {
     getUser();
@@ -36,10 +53,10 @@ function Home({ data, setData }) {
     <>
       <div className="header">
         <div className="topHeader">
+          <ToastContainer />
           <p className="topHeaderShit" style={{ marginRight: "60px" }}>
             Хэрхэн ажилладаг вэ?
           </p>
-
           <Link to={"/login"}>
             <div
               className="pee"
@@ -97,14 +114,16 @@ function Home({ data, setData }) {
       </div>
       <div className="historyContainer">
         <div className="history">
-          {id && (
-            <div>
-              <History data={id} setData={setId} />
-            </div>
-          )}
           {history &&
-            history.map((data) => {
-              return <History data={data} />;
+            history.map((el) => {
+              return (
+                <div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    {el}
+                  </div>
+                  <button onClick={deleteHistory}>X</button>
+                </div>
+              );
             })}
         </div>
       </div>

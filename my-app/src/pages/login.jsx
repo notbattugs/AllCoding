@@ -17,6 +17,7 @@ function Loginn() {
       });
 
       window.location.replace(`/users/${res.data.data._id}`);
+      console.log(res);
       window.localStorage.setItem("token", JSON.stringify(res.data.token));
       toast.success("amjilttai");
     } catch (error) {

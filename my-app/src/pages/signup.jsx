@@ -9,11 +9,13 @@ import axios from "axios";
 function Signupp() {
   const [password, setPassword] = useState();
   const [email, setEmail] = useState();
+  const [role, setRole] = useState();
   const SignUp = async () => {
     try {
       await axios.post("http://localhost:8000/users/signup", {
         password: password,
         email: email,
+        role: role,
       });
       window.location.replace("/login");
       toast.success("Amjilttai burtguullee");
@@ -44,6 +46,14 @@ function Signupp() {
             className="inputs"
             placeholder="name@mail.domain"
             onChange={(e) => setEmail(e.target.value)}
+          />
+          <p className="holder">Role</p>
+          <input
+            type="text"
+            className="inputs"
+            placeholder="··········"
+            style={{ fontWeight: "bolder" }}
+            onChange={(e) => setRole(e.target.value)}
           />
           <p className="holder">Нууц үг</p>
           <input

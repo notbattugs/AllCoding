@@ -8,14 +8,14 @@ import { useState, useEffect } from "react";
 import Link from "./components/link";
 import axios from "axios";
 import LoggedIn from "./pages/loggedIn";
+export const instance = axios.create({
+  baseURL: "http://localhost:8000",
+  headers: {
+    "Content-type": "application/json; charset=UTF-8",
+    "app-id": "63104c3120f6e665ecf628ba",
+  },
+});
 function App() {
-  const instance = axios.create({
-    baseURL: "http://localhost:8000",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-      "app-id": "63104c3120f6e665ecf628ba",
-    },
-  });
   const [data, setData] = useState([]);
   const getData = async () => {
     const res = await instance.get("/links");

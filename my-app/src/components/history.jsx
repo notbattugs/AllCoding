@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-function History({ data }) {
+function History({ data, deleteHistory }) {
   return (
     <div className="coogi">
       <span className="letter">Өгөгдсөн холбоос:</span>
@@ -12,7 +12,7 @@ function History({ data }) {
       <br />
       <div href={data.Shortlink} className="url Two">
         http://localhost:3000/{data.Shortlink}
-        <Button onClick={{}}>X</Button>
+        <Button onClick={deleteHistory}>X</Button>
         <hr />
       </div>
       {/* <span

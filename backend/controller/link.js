@@ -42,7 +42,7 @@ export const deletelink = async (req, res) => {
   } catch (error) {
     res.status(400).send({
       success: false,
-      data: error.message,
+      data: error,
     });
   }
 };
