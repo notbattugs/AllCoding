@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.loginContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.loginBox {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.logo {
+    width: 184px;
+}
+.boxTwo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.checkBox {
+    outline: 1px solid #02B589;
+}
+.boxThree {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.boginooP {
+    font-size: 32px;
+    font-weight: bold;
+    color: #02B589;
+}
+.labels {
+    font-size: 16px;
+    color: #000000;
+    font-weight: 500;
+    transform: translateY(-5px) translateX(20px);
+}
+.inps {
+    border: 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 10px 30px;
+    font-size: 18px;
+    border-radius: 25px;
+    outline: none;
+}
+.linkStyle {
+    color: #333333;
+}
+.checkLabel {
+    color: #02B589;
+}
+.clickGreen {
+    width: 100%;
+    height: 41px;
+    font-size: 20px;
+    color: #FFFFFF;
+    background-color: #02B589;
+    border: 0;
+    border-radius: 25px;
+}
+.newUser {
+    color: #02B589;
+}
+.boginooSpan {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
